@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:samayalkurippu/model/categories.dart';
-import 'package:samayalkurippu/model/favorites.dart';
 import 'package:samayalkurippu/view/widgets/customAppBar.dart';
 import 'package:samayalkurippu/view/widgets/customDrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';

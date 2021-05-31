@@ -35,7 +35,7 @@ class FavoriteCard extends StatelessWidget {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
                 child: Image.asset(
                   "assets/images/dish.png",
-                  height: MediaQuery.of(context).size.height / 8,
+                  height: 80,
                   fit: BoxFit.cover,
                 ),
               ),
