@@ -77,7 +77,7 @@ class _DishPageState extends State<DishPage> {
                       if (dishes.length == index) {
                         return InkWell(
                           child: Card(
-                              color: Color(rnd.nextInt(0xFFCCC91D)),
+                              color: Colors.deepPurple,
                               margin: EdgeInsets.only(
                                   left: 8, right: 8, bottom: 24),
                               elevation: 8,
@@ -90,7 +90,10 @@ class _DishPageState extends State<DishPage> {
                                     Icon(Icons.refresh, color: Colors.white),
                                     Text(
                                       "Load More",
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                      ),
                                     )
                                   ],
                                 ),

@@ -24,63 +24,75 @@ class FavoriteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Card(
-        color: Color(rnd.nextInt(0xFFCCC91D)),
+        color: Color(rnd.nextInt(0xffffffff)),
         margin: EdgeInsets.only(left: 8, right: 8, bottom: 24),
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Stack(children: [
               ClipRRect(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
                 child: Image.asset(
                   "assets/images/dish.png",
-                  height: 80,
                   fit: BoxFit.cover,
                 ),
               ),
-              Container(
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: IconButton(
-                      key: Key('favorites_text_$snapshot.data[index]'),
-                      icon: Icon(
-                        Icons.close,
-                        color: Colors.grey,
-                      ),
-                      onPressed: () {
-                        favoritesList.favoriteItems = snapshot;
-                        favoritesList.remove(snapshot[index]);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Removed from favorites.'),
-                            duration: Duration(seconds: 1),
-                          ),
-                        );
-                      },
+              Positioned(
+                left: 5,
+                top: 5,
+                child: CircleAvatar(
+                  radius: 18,
+                  backgroundColor: Colors.white60,
+                  child: IconButton(
+                    key: Key('favorites_text_$snapshot.data[index]'),
+                    icon: Icon(
+                      Icons.close,
+                      color: Colors.black,
                     ),
+                    onPressed: () {
+                      favoritesList.favoriteItems = snapshot;
+                      favoritesList.remove(snapshot[index]);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Removed from favorites.'),
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
             ]),
-            Expanded(
-              child: Container(
+            Container(
+              child: Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Align(
-                          alignment: Alignment.center,
-                          child: Text(dishes[0].title,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold))),
-                    ],
-                  ),
+                  child: Text(dishes[0].title,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.black,
+                          shadows: [
+                            Shadow(
+                                // bottomLeft
+                                offset: Offset(-1.5, -1.5),
+                                color: Colors.white),
+                            Shadow(
+                                // bottomRight
+                                offset: Offset(1.5, -1.5),
+                                color: Colors.white),
+                            Shadow(
+                                // topRight
+                                offset: Offset(1.5, 1.5),
+                                color: Colors.white),
+                            Shadow(
+                                // topLeft
+                                offset: Offset(-1.5, 1.5),
+                                color: Colors.white),
+                          ],
+                          fontWeight: FontWeight.bold)),
                 ),
               ),
             ),

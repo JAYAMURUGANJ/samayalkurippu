@@ -83,7 +83,7 @@ class _DishDetailsPageState extends State<DishDetailsPage> {
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                   tileColor: appmainthemecolor,
-                  leading: Icon(Icons.list_sharp, color: Colors.white),
+                  leading: Icon(Icons.menu, color: Colors.white),
                   title: Text(
                     widget.dish.title,
                     style: TextStyle(color: Colors.white, fontSize: 18),
