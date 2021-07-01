@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:samayalkurippu/model/dishes.dart';
 import 'package:samayalkurippu/model/favorites.dart';
@@ -35,35 +36,42 @@ class _FavoritesPageState extends State<FavoritesPage> {
         builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
           return snapshot.hasData
               ? snapshot.data.length != 0
-                  ? Container(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GridView.builder(
-                            itemCount: snapshot.data.length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            gridDelegate:
-                                new SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount:
-                                  MediaQuery.of(context).orientation ==
-                                          Orientation.portrait
-                                      ? 2
-                                      : 4,
-                            ),
-                            itemBuilder: (context, index) {
-                              dishes = output
-                                  .where(
-                                      (item) => item.id == snapshot.data[index])
-                                  .toList();
-                              return FavoriteCard(
-                                  index: index,
-                                  snapshot: snapshot.data,
-                                  favoritesList: favoritesList,
-                                  dishes: dishes,
-                                  output: output);
-                            }),
-                      ),
-                    )
+                  ? LayoutBuilder(builder: (context, constraints) {
+                      int ccount;
+                      if (constraints.maxWidth < 768) {
+                        ccount = 2;
+                      } else if (constraints.maxWidth >= 768 &&
+                          constraints.maxWidth < 1024) {
+                        ccount = 4;
+                      } else {
+                        ccount = 6;
+                      }
+                      return Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GridView.builder(
+                              itemCount: snapshot.data.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              gridDelegate:
+                                  new SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: ccount,
+                              ),
+                              itemBuilder: (context, index) {
+                                dishes = output
+                                    .where((item) =>
+                                        item.id == snapshot.data[index])
+                                    .toList();
+                                return FavoriteCard(
+                                    index: index,
+                                    snapshot: snapshot.data,
+                                    favoritesList: favoritesList,
+                                    dishes: dishes,
+                                    output: output);
+                              }),
+                        ),
+                      );
+                    })
                   : Center(
                       child: Text(
                         "No Favorite Items Found...",

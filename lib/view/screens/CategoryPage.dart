@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:samayalkurippu/model/categories.dart';
 import 'package:samayalkurippu/view/widgets/customAppBar.dart';
 import 'package:samayalkurippu/view/widgets/customDrawer.dart';
@@ -47,47 +48,55 @@ class _CategoryListPageState extends State<CategoryListPage> {
         ),
         drawer: CustomDrawer(favItemCount: _favItemCount),
         body: SingleChildScrollView(
-          child: Container(
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: foodCategory.length,
-                  gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: MediaQuery.of(context).orientation ==
-                            Orientation.portrait
-                        ? 2
-                        : 4,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    return foodCategory[index].id == "about"
-                        ? Card(
-                            color: Colors.deepPurple,
-                            margin:
-                                EdgeInsets.only(left: 8, right: 8, bottom: 24),
-                            elevation: 8,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32)),
-                            child: Container(
-                              child: Center(
-                                  child: Text("About us",
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold))),
-                            ))
-                        : CategorieCard(
-                            categories: Categories(
-                                name: foodCategory[index].name,
-                                id: foodCategory[index].id,
-                                image: foodCategory[index].image,
-                                desc: foodCategory[index].desc),
-                            randcolor: Color(rnd.nextInt(0xFFCCC91D)),
-                          );
-                  },
-                )),
-          ),
+          child: LayoutBuilder(builder: (context, constraints) {
+            int ccount;
+            if (constraints.maxWidth < 768) {
+              ccount = 2;
+            } else if (constraints.maxWidth >= 768 &&
+                constraints.maxWidth < 1024) {
+              ccount = 4;
+            } else {
+              ccount = 6;
+            }
+            return Container(
+              child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: foodCategory.length,
+                    gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: ccount,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return foodCategory[index].id == "about"
+                          ? Card(
+                              color: Colors.deepPurple,
+                              margin: EdgeInsets.only(
+                                  left: 8, right: 8, bottom: 24),
+                              elevation: 8,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32)),
+                              child: Container(
+                                child: Center(
+                                    child: Text("About us",
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold))),
+                              ))
+                          : CategorieCard(
+                              categories: Categories(
+                                  name: foodCategory[index].name,
+                                  id: foodCategory[index].id,
+                                  image: foodCategory[index].image,
+                                  desc: foodCategory[index].desc),
+                              randcolor: Color(rnd.nextInt(0xFFCCC91D)),
+                            );
+                    },
+                  )),
+            );
+          }),
         ),
       ),
     );
