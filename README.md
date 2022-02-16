@@ -27,16 +27,16 @@ https://jayamuruganj.github.io/web.samayalkurippu/#/
     sdk: flutter<br>
     
 ## Mobile
-![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/main/mobile.png)
+![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/master/mobile.png)
 
 ## Tab
-![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/main/tab1.png)
+![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/master/tab.png)
 
-![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/main/tab2.png)
+![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/master/tab2.png)
 
-![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/main/tab3.png)
+![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/master/tab3.png)
 
-![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/main/tab4.png)
+![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/master/tab4.png)
  
 ## Desktop
-![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/main/desktop.png)
+![alt text](https://raw.githubusercontent.com/JAYAMURUGANJ/samayalkurippu/master/desktop.png)
